@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.retrofitconnection.model.Departamento;
-import com.example.retrofitconnection.model.Professor;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class DepartamentoAdapter extends RecyclerView.Adapter<DepartamentoAdapte
     @NonNull
     @Override
     public DepartamentoHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View itemView = mInflater.inflate(R.layout.item_view, parent, false);
+       View itemView = mInflater.inflate(R.layout.item_departamento_view, parent, false);
 
         return new DepartamentoHolder(itemView);
     }

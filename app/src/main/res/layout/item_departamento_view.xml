@@ -17,7 +17,7 @@
         android:id="@+id/departamento_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Aqui entra o nome do professor"
+        android:text="Aqui entra o nome do departamento"
         app:layout_constraintStart_toEndOf="@id/image_departamento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

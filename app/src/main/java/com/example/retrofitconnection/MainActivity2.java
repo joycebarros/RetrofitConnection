@@ -24,17 +24,18 @@ public class MainActivity2 extends AppCompatActivity {
     private RecyclerView recyclerView;
     private DepartamentoAdapter departamentoAdapter;
 
+    @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_departamento);
 
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView2);
 
         departamentoAdapter = new DepartamentoAdapter(this, new ArrayList<Departamento>());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(departamentoAdapter);
 
-        createDepartamento();
+        //createDepartamento();
 
         getAllDepartamentos(new ResultEventDepartamentoInterface() {
             @Override
@@ -60,7 +61,7 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onResponse(Call<Departamento> call, Response<Departamento> response) {
                 if (response.isSuccessful()) {
-                  //  Departamento departamento1 = response.body();
+                    Departamento departamento1 = response.body();
                     Toast.makeText(MainActivity2.this, "Sucesso ao criar o departamento!!!", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(MainActivity2.this, "Erro no sucesso", Toast.LENGTH_LONG).show();
