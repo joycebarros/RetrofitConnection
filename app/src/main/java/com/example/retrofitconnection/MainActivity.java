@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.retrofitconnection.config.RetrofitConfig;
+import com.example.retrofitconnection.config.RoomConfig;
 import com.example.retrofitconnection.model.Departamento;
 import com.example.retrofitconnection.model.Professor;
 import com.example.retrofitconnection.repository.ResultEventInterface;
@@ -23,11 +24,14 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ProfessorAdapter professorAdapter;
+    private RoomConfig dbInstance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        dbInstance = RoomConfig.getInstance(this);
 
         recyclerView = findViewById(R.id.recyclerView);
         professorAdapter = new ProfessorAdapter(this, new ArrayList<Professor>());
@@ -44,7 +48,9 @@ public class MainActivity extends AppCompatActivity {
             public void onResult(List<Professor> professors) {
                 //Quando houver resultado, mostre os valores na tela!
 
-                professorAdapter = new ProfessorAdapter(MainActivity.this, professors);
+                List<Professor> pList = dbInstance.professorDAO().getAll();
+
+                professorAdapter = new ProfessorAdapter(MainActivity.this, pList);
                 recyclerView.setAdapter(professorAdapter);
             }
 
@@ -90,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Professor>> call, Response<List<Professor>> response) {
                 List<Professor> professorsList = response.body();
 
+                dbInstance.professorDAO().insertALl(professorsList);
                 resultEventInterface.onResult(professorsList);
             }
 
