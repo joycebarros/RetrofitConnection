@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.retrofitconnection.config.RetrofitConfig;
+import com.example.retrofitconnection.config.RoomConfig;
 import com.example.retrofitconnection.model.Departamento;
 import com.example.retrofitconnection.repository.ResultEventDepartamentoInterface;
 
@@ -23,11 +24,14 @@ public class MainActivity2 extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private DepartamentoAdapter departamentoAdapter;
+    private RoomConfig dbInstance;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_departamento);
+
+        dbInstance = RoomConfig.getInstance(this);
 
         recyclerView = findViewById(R.id.recyclerView2);
 
@@ -40,7 +44,9 @@ public class MainActivity2 extends AppCompatActivity {
         getAllDepartamentos(new ResultEventDepartamentoInterface() {
             @Override
             public void onResult(List<Departamento> departamentos) {
-                departamentoAdapter = new DepartamentoAdapter(MainActivity2.this, departamentos );
+                List<Departamento> dList = dbInstance.departamentoDAO().getAll();
+
+                departamentoAdapter = new DepartamentoAdapter(MainActivity2.this, dList);
                 recyclerView.setAdapter(departamentoAdapter);
             }
 
@@ -82,6 +88,8 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Departamento>> call, Response<List<Departamento>> response) {
                 List<Departamento> departamentoList = response.body();
+
+                dbInstance.departamentoDAO().insertAll(departamentoList);
                 resultEventDepartamentoInterface.onResult(departamentoList);
 
             }

@@ -9,8 +9,9 @@
     <Button
         android:id="@+id/button1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginTop="2dp"
+        android:backgroundTint="#D5D5D5"
         android:text="Professor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +20,8 @@
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
+        android:backgroundTint="#D5D5D5"
         android:text="Departamento"
         app:layout_constraintEnd_toEndOf="@id/button1"
         app:layout_constraintStart_toStartOf="parent"
