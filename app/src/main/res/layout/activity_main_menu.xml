@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivityMenu">
+    tools:context=".view.MainActivityMenu">
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/bt_professor"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginTop="2dp"
@@ -18,12 +18,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/bt_departamento"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:backgroundTint="#D5D5D5"
         android:text="Departamento"
-        app:layout_constraintEnd_toEndOf="@id/button1"
+        app:layout_constraintEnd_toEndOf="@id/bt_professor"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_professor" />
+
+    <Button
+        android:id="@+id/bt_curso"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:backgroundTint="#D5D5D5"
+        android:text="Curso"
+        app:layout_constraintEnd_toEndOf="@id/bt_departamento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_departamento" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.retrofitconnection;
+package com.example.retrofitconnection.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.retrofitconnection.R;
+import com.example.retrofitconnection.adapter.ProfessorAdapter;
 import com.example.retrofitconnection.config.RetrofitConfig;
 import com.example.retrofitconnection.config.RoomConfig;
 import com.example.retrofitconnection.model.Departamento;
@@ -20,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class ProfessorActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ProfessorAdapter professorAdapter;
@@ -50,14 +52,14 @@ public class MainActivity extends AppCompatActivity {
 
                 List<Professor> pList = dbInstance.professorDAO().getAll();
 
-                professorAdapter = new ProfessorAdapter(MainActivity.this, pList);
+                professorAdapter = new ProfessorAdapter(ProfessorActivity.this, pList);
                 recyclerView.setAdapter(professorAdapter);
             }
 
             @Override
             public void onFail(String message) {
                 // Quando houver falha, Exiba uma mensagem de erro!
-                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+                Toast.makeText(ProfessorActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -75,15 +77,15 @@ public class MainActivity extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
                     Professor professor = response.body();
-                    Toast.makeText(MainActivity.this, "Sucesso ao criar o professor!!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ProfessorActivity.this, "Sucesso ao criar o professor!!!", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(MainActivity.this, "Erro no sucesso", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ProfessorActivity.this, "Erro no sucesso", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Professor> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Falha ao criar o Professsor!!!", Toast.LENGTH_LONG).show();
+                Toast.makeText(ProfessorActivity.this, "Falha ao criar o Professsor!!!", Toast.LENGTH_LONG).show();
             }
         });
     }

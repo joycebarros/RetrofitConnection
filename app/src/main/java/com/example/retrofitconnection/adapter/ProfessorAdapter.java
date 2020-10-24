@@ -1,4 +1,4 @@
-package com.example.retrofitconnection;
+package com.example.retrofitconnection.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.retrofitconnection.R;
 import com.example.retrofitconnection.model.Professor;
 
 import java.util.List;

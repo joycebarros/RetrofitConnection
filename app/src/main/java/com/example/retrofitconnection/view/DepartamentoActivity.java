@@ -1,4 +1,4 @@
-package com.example.retrofitconnection;
+package com.example.retrofitconnection.view;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.retrofitconnection.R;
+import com.example.retrofitconnection.adapter.DepartamentoAdapter;
 import com.example.retrofitconnection.config.RetrofitConfig;
 import com.example.retrofitconnection.config.RoomConfig;
 import com.example.retrofitconnection.model.Departamento;
@@ -20,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity2 extends AppCompatActivity {
+public class DepartamentoActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private DepartamentoAdapter departamentoAdapter;
@@ -46,13 +48,13 @@ public class MainActivity2 extends AppCompatActivity {
             public void onResult(List<Departamento> departamentos) {
                 List<Departamento> dList = dbInstance.departamentoDAO().getAll();
 
-                departamentoAdapter = new DepartamentoAdapter(MainActivity2.this, dList);
+                departamentoAdapter = new DepartamentoAdapter(DepartamentoActivity.this, dList);
                 recyclerView.setAdapter(departamentoAdapter);
             }
 
             @Override
             public void onFail(String message) {
-                Toast.makeText(MainActivity2.this, message, Toast.LENGTH_LONG).show();
+                Toast.makeText(DepartamentoActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -68,15 +70,15 @@ public class MainActivity2 extends AppCompatActivity {
             public void onResponse(Call<Departamento> call, Response<Departamento> response) {
                 if (response.isSuccessful()) {
                     Departamento departamento1 = response.body();
-                    Toast.makeText(MainActivity2.this, "Sucesso ao criar o departamento!!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(DepartamentoActivity.this, "Sucesso ao criar o departamento!!!", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(MainActivity2.this, "Erro no sucesso", Toast.LENGTH_LONG).show();
+                    Toast.makeText(DepartamentoActivity.this, "Erro no sucesso", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Departamento> call, Throwable t) {
-                Toast.makeText(MainActivity2.this, "Falha ao criar o departamento", Toast.LENGTH_LONG).show();
+                Toast.makeText(DepartamentoActivity.this, "Falha ao criar o departamento", Toast.LENGTH_LONG).show();
             }
         });
     }
