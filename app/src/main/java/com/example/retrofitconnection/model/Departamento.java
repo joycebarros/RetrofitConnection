@@ -7,9 +7,10 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Departamento {
 
-    @PrimaryKey(autoGenerate = true)
-    private int local_id;
-    @ColumnInfo(name = "server_id")
+  //  @PrimaryKey(autoGenerate = true)
+  //  private int local_id;
+  //  @ColumnInfo(name = "server_id")
+    @PrimaryKey
     private int id;
     private String name;
 
@@ -26,13 +27,13 @@ public class Departamento {
         this.name = name;
     }
 
-    public int getLocal_id() {
-        return local_id;
-    }
-
-    public void setLocal_id(int local_id) {
-        this.local_id = local_id;
-    }
+//    public int getLocal_id() {
+//        return local_id;
+//    }
+//
+//    public void setLocal_id(int local_id) {
+//        this.local_id = local_id;
+//    }
 
     public void setId(int id) {
         this.id = id;

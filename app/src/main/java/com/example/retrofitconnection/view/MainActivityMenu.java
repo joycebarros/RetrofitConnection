@@ -42,5 +42,14 @@ public class MainActivityMenu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button b4 = findViewById(R.id.bt_alocacao);
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivityMenu.this, AlocacaoActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

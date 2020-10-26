@@ -1,5 +1,6 @@
 package com.example.retrofitconnection.config;
 
+import com.example.retrofitconnection.service.AlocacaoService;
 import com.example.retrofitconnection.service.CursoService;
 import com.example.retrofitconnection.service.DepartamentoService;
 import com.example.retrofitconnection.service.ProfessorService;
@@ -28,5 +29,9 @@ public class RetrofitConfig {
 
     public CursoService getCursoService(){
         return retrofit.create(CursoService.class);
+    }
+
+    public AlocacaoService getAlocacaoService(){
+        return retrofit.create(AlocacaoService.class);
     }
 }

@@ -37,4 +37,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_departamento" />
 
+    <Button
+        android:id="@+id/bt_alocacao"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:backgroundTint="#D5D5D5"
+        android:text="Alocação"
+        app:layout_constraintEnd_toEndOf="@id/bt_curso"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_curso" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

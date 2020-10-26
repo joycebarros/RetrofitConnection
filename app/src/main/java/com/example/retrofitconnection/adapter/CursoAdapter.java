@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,10 +47,12 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.CursoHolder>
 
     public class CursoHolder extends RecyclerView.ViewHolder{
 
+        ImageView imageView;
         TextView textView;
 
         public CursoHolder(@NonNull View itemView) {
             super(itemView);
+            imageView = itemView.findViewById(R.id.image_curso);
             textView = itemView.findViewById(R.id.tv_curso_nome);
         }
     }

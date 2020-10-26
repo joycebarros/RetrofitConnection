@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.retrofitconnection.R;
 import com.example.retrofitconnection.adapter.CursoAdapter;
 import com.example.retrofitconnection.config.RetrofitConfig;
+import com.example.retrofitconnection.config.RoomConfig;
 import com.example.retrofitconnection.model.Curso;
 import com.example.retrofitconnection.repository.ResultEventCurso;
 
@@ -24,11 +25,14 @@ public class CourseActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private CursoAdapter cursoAdapter;
+    private RoomConfig dbInstance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
+
+        dbInstance = RoomConfig.getInstance(this);
 
         recyclerView = findViewById(R.id.rv_cursos);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -36,7 +40,9 @@ public class CourseActivity extends AppCompatActivity {
         getAllCursos(new ResultEventCurso() {
             @Override
             public void onResult(List<Curso> cursos) {
-                cursoAdapter = new CursoAdapter(CourseActivity.this, cursos);
+                List<Curso> listaCurso = dbInstance.cursoDAO().getAll();
+
+                cursoAdapter = new CursoAdapter(CourseActivity.this, listaCurso);
                 recyclerView.setAdapter(cursoAdapter);
             }
 
@@ -53,6 +59,7 @@ public class CourseActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Curso>> call, Response<List<Curso>> response) {
                 List<Curso> cursoLista = response.body();
+                dbInstance.cursoDAO().insertAll(cursoLista);
                 resultEventCurso.onResult(cursoLista);
             }
 
