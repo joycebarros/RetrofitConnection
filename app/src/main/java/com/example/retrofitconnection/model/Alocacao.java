@@ -12,7 +12,7 @@ public class Alocacao {
     private int startHour;
     private int endHour;
     Professor professor;
-    Curso curso;
+    Curso course;
 
     public Alocacao() {
     }
@@ -22,7 +22,7 @@ public class Alocacao {
         this.startHour = startHour;
         this.endHour = endHour;
         this.professor = professor;
-        this.curso = curso;
+        this.course = curso;
     }
 
     public int getId() {
@@ -65,11 +65,11 @@ public class Alocacao {
         this.professor = professor;
     }
 
-    public Curso getCurso() {
-        return curso;
+    public Curso getCourse() {
+        return course;
     }
 
-    public void setCurso(Curso curso) {
-        this.curso = curso;
+    public void setCourse(Curso course) {
+        this.course = course;
     }
 }

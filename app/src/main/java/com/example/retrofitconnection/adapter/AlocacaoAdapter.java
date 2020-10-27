@@ -29,14 +29,16 @@ public class AlocacaoAdapter extends RecyclerView.Adapter<AlocacaoAdapter.Alocac
     @NonNull
     @Override
     public AlocacaoHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = minflater.inflate(R.layout.activity_alocacao, parent, false);
+        View view = minflater.inflate(R.layout.layout_alocacao, parent, false);
         return new AlocacaoHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AlocacaoHolder holder, int position) {
         Alocacao alocacao = alocacaos.get(position);
-        holder.textView.setText(alocacao.getDayOfWeek());
+        holder.cursoName.setText(alocacao.getCourse().getName());
+        holder.professorName.setText(alocacao.getProfessor().getName());
+        holder.diaSemana.setText(alocacao.getDayOfWeek());
     }
 
     @Override
@@ -46,12 +48,14 @@ public class AlocacaoAdapter extends RecyclerView.Adapter<AlocacaoAdapter.Alocac
 
     public class AlocacaoHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
-        TextView textView;
+        TextView cursoName, professorName, diaSemana;
 
         public AlocacaoHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image_alocacao);
-            textView = itemView.findViewById(R.id.tv_alocacao_nome);
+            cursoName = itemView.findViewById(R.id.tv_alocacao_curso);
+            professorName = itemView.findViewById(R.id.tv_alocacao_professor);
+            diaSemana = itemView.findViewById(R.id.tv_alocacao_dia);
         }
     }
 }
