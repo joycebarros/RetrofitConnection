@@ -3,8 +3,10 @@ package com.example.retrofitconnection.model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public class Curso {
+public class Curso implements Serializable {
 
     @PrimaryKey
     private int id;

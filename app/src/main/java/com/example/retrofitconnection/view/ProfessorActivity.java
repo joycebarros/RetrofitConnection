@@ -1,10 +1,14 @@
 package com.example.retrofitconnection.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.retrofitconnection.R;
@@ -31,7 +35,7 @@ public class ProfessorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_professor);
 
         dbInstance = RoomConfig.getInstance(this);
 
@@ -65,30 +69,27 @@ public class ProfessorActivity extends AppCompatActivity {
 
     }
 
-    private void createProfessor() {
-        Departamento departamento = new Departamento(271, "");
-        Professor p1 = new Professor("Joyce Barros", "044555666", departamento);
-
-        Call<Professor> call = new RetrofitConfig().getProfessorService().create(p1);
-
-        call.enqueue(new Callback<Professor>() {
-            @Override
-            public void onResponse(Call<Professor> call, Response<Professor> response) {
-
-                if (response.isSuccessful()) {
-                    Professor professor = response.body();
-                    Toast.makeText(ProfessorActivity.this, "Sucesso ao criar o professor!!!", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(ProfessorActivity.this, "Erro no sucesso", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Professor> call, Throwable t) {
-                Toast.makeText(ProfessorActivity.this, "Falha ao criar o Professsor!!!", Toast.LENGTH_LONG).show();
-            }
-        });
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.barra_menu, menu);
+        return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_professor:
+                Intent intent = new Intent(ProfessorActivity.this, CreateProfessorActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_settings:
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     private void getAllProfessors(final ResultEventInterface resultEventInterface) {
         Call<List<Professor>> call = new RetrofitConfig().getProfessorService().getAllProfessors();

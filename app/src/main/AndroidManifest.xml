@@ -11,17 +11,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.AlocacaoActivity"></activity>
-        <activity android:name=".view.CourseActivity" />
-        <activity android:name=".view.MainActivityMenu">
+        <activity android:name=".view.UpdateCourseActivity"
+            android:label="Tela de Atualização"/>
+        <activity
+            android:name=".view.AlocacaoActivity"
+            android:label="Lista de Alocações" />
+        <activity
+            android:name=".view.CourseActivity"
+            android:label="Lista de Cursos" />
+        <activity
+            android:name=".view.MainActivityMenu"
+            android:label="Menu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ProfessorActivity" />
-        <activity android:name=".view.DepartamentoActivity" />
+        <activity
+            android:name=".view.ProfessorActivity"
+            android:label="Lista de Professores" />
+        <activity android:name=".view.CreateProfessorActivity"
+            android:label="Cadastro de Professor" />
+        <activity
+            android:name=".view.DepartamentoActivity"
+            android:label="Lista de Departamentos" />
+        <activity
+            android:name=".view.CreateCourseActivity"
+            android:label="Cadastro de Curso" />
     </application>
 
 </manifest>

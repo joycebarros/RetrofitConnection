@@ -1,10 +1,14 @@
 package com.example.retrofitconnection.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 
@@ -51,6 +55,27 @@ public class CourseActivity extends AppCompatActivity {
                 Toast.makeText(CourseActivity.this, mensagem, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.barra_menu_add, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_icone:
+                Intent intent = new Intent(CourseActivity.this, CreateCourseActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_settings:
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void getAllCursos(final ResultEventCurso resultEventCurso){

@@ -31,7 +31,7 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.Prof
 
         //Cria referencia de Layout
 
-        View itemView = mInflater.inflate(R.layout.item_view, parent, false);
+        View itemView = mInflater.inflate(R.layout.layout_professor, parent, false);
 
         return new ProfessorHolder(itemView);
     }
