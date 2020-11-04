@@ -11,8 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.UpdateCourseActivity"
-            android:label="Tela de Atualização"/>
+        <activity android:name=".view.UpdateDepartamentoActivity"></activity>
+        <activity android:name=".view.CreateDepartamentoActivity" />
+        <activity
+            android:name=".view.UpdateCourseActivity"
+            android:label="Tela de Atualização" />
         <activity
             android:name=".view.AlocacaoActivity"
             android:label="Lista de Alocações" />
@@ -31,7 +34,8 @@
         <activity
             android:name=".view.ProfessorActivity"
             android:label="Lista de Professores" />
-        <activity android:name=".view.CreateProfessorActivity"
+        <activity
+            android:name=".view.CreateProfessorActivity"
             android:label="Cadastro de Professor" />
         <activity
             android:name=".view.DepartamentoActivity"

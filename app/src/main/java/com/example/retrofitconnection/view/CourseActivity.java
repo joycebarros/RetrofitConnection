@@ -37,15 +37,24 @@ public class CourseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_course);
 
         dbInstance = RoomConfig.getInstance(this);
-
         recyclerView = findViewById(R.id.rv_cursos);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getAllCursos(new ResultEventCurso() {
             @Override
             public void onResult(List<Curso> cursos) {
-                List<Curso> listaCurso = dbInstance.cursoDAO().getAll();
-
+                List<Curso> listaCurso;
+                if(cursos.isEmpty()){
+                   listaCurso = dbInstance.cursoDAO().getAll();
+                }else{
+                    listaCurso = cursos;
+                }
                 cursoAdapter = new CursoAdapter(CourseActivity.this, listaCurso);
                 recyclerView.setAdapter(cursoAdapter);
             }

@@ -2,15 +2,12 @@ package com.example.retrofitconnection.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.retrofitconnection.R;
 import com.example.retrofitconnection.adapter.CursoAdapter;
 import com.example.retrofitconnection.config.RetrofitConfig;
 import com.example.retrofitconnection.model.Curso;
@@ -28,7 +25,6 @@ public class UpdateCourseActivity extends AppCompatActivity {
 
     private Curso curso;
     private EditText editText;
-    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +39,6 @@ public class UpdateCourseActivity extends AppCompatActivity {
         editText = findViewById(id.ed_curso_name);
         editText.setText(curso.getName());
 
-        intent = new Intent(UpdateCourseActivity.this, CourseActivity.class);
-
         btEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +49,7 @@ public class UpdateCourseActivity extends AppCompatActivity {
                     updateCourse(curso.getId(), curso, new ResultEventCurso() {
                         @Override
                         public void onResult(List<Curso> cursos) {
-                            startActivity(intent);
+                            finish();
                         }
                         @Override
                         public void onFail(String mensagem) {
@@ -72,7 +66,7 @@ public class UpdateCourseActivity extends AppCompatActivity {
                 excluirCurso(curso.getId(), new ResultEventCurso() {
                     @Override
                     public void onResult(List<Curso> cursos) {
-                        startActivity(intent);
+                       finish();
                     }
 
                     @Override
@@ -86,7 +80,7 @@ public class UpdateCourseActivity extends AppCompatActivity {
         btCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -101,7 +95,7 @@ public class UpdateCourseActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     Curso curso = response.body();
                     Toast.makeText(UpdateCourseActivity.this, "Curso atualizado com sucesso!", Toast.LENGTH_LONG).show();
-                    startActivity(intent);
+                    finish();
                 }else {
                     Toast.makeText(UpdateCourseActivity.this, "Falha no sucesso!", Toast.LENGTH_LONG).show();
                 }
@@ -110,7 +104,7 @@ public class UpdateCourseActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Curso> call, Throwable t) {
                 Toast.makeText(UpdateCourseActivity.this, "Falha na atualização!", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
+                finish();
             }
         });
     }
@@ -124,7 +118,7 @@ public class UpdateCourseActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     Curso curso = response.body();
                     Toast.makeText(UpdateCourseActivity.this, "Curso excluído com sucesso!", Toast.LENGTH_LONG).show();
-                    startActivity(intent);
+                    finish();
                 }else{
                     Toast.makeText(UpdateCourseActivity.this, "Falha no sucesso!", Toast.LENGTH_LONG).show();
                 }
@@ -133,7 +127,7 @@ public class UpdateCourseActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Curso> call, Throwable t) {
                 Toast.makeText(UpdateCourseActivity.this, "Falha na exclusão!", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
+                finish();
             }
         });
     }

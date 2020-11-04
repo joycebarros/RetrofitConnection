@@ -6,6 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <ImageView
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
         android:id="@+id/image_professor"
         android:layout_width="60dp"
         android:layout_height="60dp"

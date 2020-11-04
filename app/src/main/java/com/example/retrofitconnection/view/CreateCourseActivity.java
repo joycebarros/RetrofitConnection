@@ -23,8 +23,6 @@ public class CreateCourseActivity extends AppCompatActivity {
 
     private Curso curso;
     private EditText editText;
-    private Intent intent;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,8 +43,7 @@ public class CreateCourseActivity extends AppCompatActivity {
         btCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateCourseActivity.this, CourseActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
@@ -58,8 +55,6 @@ public class CreateCourseActivity extends AppCompatActivity {
         pcurso.setName(text);
         Call<Curso> call = new RetrofitConfig().getCursoService().create(pcurso);
 
-        intent = new Intent(CreateCourseActivity.this, CourseActivity.class);
-
         call.enqueue(new Callback<Curso>() {
             @Override
             public void onResponse(Call<Curso> call, Response<Curso> response) {
@@ -67,17 +62,17 @@ public class CreateCourseActivity extends AppCompatActivity {
                     Curso curso = response.body();
                     curso.toString();
                     Toast.makeText(CreateCourseActivity.this, "Sucesso ao criar o curso", Toast.LENGTH_LONG).show();
-                    startActivity(intent);
+                    finish();
                 }else {
                     Toast.makeText(CreateCourseActivity.this, "Erro no Sucesso", Toast.LENGTH_LONG).show();
-                    startActivity(intent);
+                    finish();
                 }
             }
 
             @Override
             public void onFailure(Call<Curso> call, Throwable t) {
                 Toast.makeText(CreateCourseActivity.this, "Falha ao criar o curso", Toast.LENGTH_LONG).show();
-                startActivity(intent);
+                finish();
             }
         });
 

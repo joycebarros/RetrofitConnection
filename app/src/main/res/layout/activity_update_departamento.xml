@@ -4,49 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.CreateProfessorActivity">
+    tools:context=".view.UpdateDepartamentoActivity">
 
     <EditText
-        android:id="@+id/ed_professor_name"
+        android:id="@+id/ed_departamento_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:text="Departamento"
         android:inputType="textPersonName"
-        android:hint="Digite o nome do professor"
-        android:textColorHint="#bbb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-    <EditText
-        android:id="@+id/ed_professsor_cpf"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Digite o CPF"
-        android:textColorHint="#bbb"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ed_professor_name" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/ed_professsor_cpf"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/bt_enviar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="11dp"
-        android:text="Salvar"
+        android:text="Atualizar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinner" />
+        app:layout_constraintTop_toBottomOf="@id/ed_departamento_name" />
+
+    <Button
+        android:id="@+id/bt_excluir"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:text="Excluir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bt_enviar" />
 
     <Button
         android:id="@+id/bt_cancelar"
@@ -56,10 +45,6 @@
         android:text="Cancelar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bt_enviar" />
+        app:layout_constraintTop_toBottomOf="@id/bt_excluir" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-

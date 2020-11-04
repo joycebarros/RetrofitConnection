@@ -1,8 +1,12 @@
 package com.example.retrofitconnection.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,19 +38,26 @@ public class DepartamentoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_departamento);
 
         dbInstance = RoomConfig.getInstance(this);
-
         recyclerView = findViewById(R.id.recyclerView2);
 
-        departamentoAdapter = new DepartamentoAdapter(this, new ArrayList<Departamento>());
+       // departamentoAdapter = new DepartamentoAdapter(this, new ArrayList<Departamento>());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(departamentoAdapter);
+       // recyclerView.setAdapter(departamentoAdapter);
 
-        //createDepartamento();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         getAllDepartamentos(new ResultEventDepartamentoInterface() {
             @Override
             public void onResult(List<Departamento> departamentos) {
-                List<Departamento> dList = dbInstance.departamentoDAO().getAll();
+                List<Departamento> dList;
+                if(departamentos.isEmpty()){
+                    dList = dbInstance.departamentoDAO().getAll();
+                }else{
+                    dList = departamentos;
+                }
 
                 departamentoAdapter = new DepartamentoAdapter(DepartamentoActivity.this, dList);
                 recyclerView.setAdapter(departamentoAdapter);
@@ -57,31 +68,29 @@ public class DepartamentoActivity extends AppCompatActivity {
                 Toast.makeText(DepartamentoActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
-
     }
 
-    private void createDepartamento() {
-        Departamento departamento = new Departamento("ABC");
-
-        Call<Departamento> call = new RetrofitConfig().getDepartamentoService().create(departamento);
-
-        call.enqueue(new Callback<Departamento>() {
-            @Override
-            public void onResponse(Call<Departamento> call, Response<Departamento> response) {
-                if (response.isSuccessful()) {
-                    Departamento departamento1 = response.body();
-                    Toast.makeText(DepartamentoActivity.this, "Sucesso ao criar o departamento!!!", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(DepartamentoActivity.this, "Erro no sucesso", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Departamento> call, Throwable t) {
-                Toast.makeText(DepartamentoActivity.this, "Falha ao criar o departamento", Toast.LENGTH_LONG).show();
-            }
-        });
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.barra_menu_add, menu);
+        return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_icone:
+                Intent intent = new Intent(DepartamentoActivity.this, CreateDepartamentoActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_settings:
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     private void getAllDepartamentos(final ResultEventDepartamentoInterface resultEventDepartamentoInterface) {
         Call<List<Departamento>> call = new RetrofitConfig().getDepartamentoService().getAllDepartamentos();
@@ -93,7 +102,6 @@ public class DepartamentoActivity extends AppCompatActivity {
 
                 dbInstance.departamentoDAO().insertAll(departamentoList);
                 resultEventDepartamentoInterface.onResult(departamentoList);
-
             }
 
             @Override

@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.retrofitconnection.R;
 import com.example.retrofitconnection.model.Curso;
-import com.example.retrofitconnection.view.CreateCourseActivity;
 import com.example.retrofitconnection.view.UpdateCourseActivity;
 
 import java.util.List;
@@ -24,7 +23,6 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.CursoHolder>
     private Context context;
     private final LayoutInflater mInflater;
     private List<Curso> cursos;
-
     public final static String ITEM_ID_EXTRA = "CursoID";
 
     public CursoAdapter(Context context, List<Curso> cursos) {
